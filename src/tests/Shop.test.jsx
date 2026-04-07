@@ -48,4 +48,14 @@ describe('Shop', () => {
 
         expect(screen.getByText('Check Out')).toBeInTheDocument();
     });
+
+    it('confirms product card design', () => {
+        render(
+            <MemoryRouter>
+                <Shop />
+            </MemoryRouter>
+        );
+
+        expect(screen.getAllByText('Add to Cart')[0]).toBeInTheDocument();
+    })
 });

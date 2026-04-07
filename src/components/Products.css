@@ -1,0 +1,16 @@
+.page-outline {
+    display: flex;
+    gap: 30px;
+}
+
+.item-outline {
+    border: solid, black;
+    border-radius: 10%;
+    padding: 20px;
+}
+
+.item-photo {
+    border: solid, black;
+    border-radius: 10%;
+    padding: 50px;
+}
