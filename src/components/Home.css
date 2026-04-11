@@ -1,0 +1,41 @@
+h1,
+h2 {
+    color: white;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom-style: solid;
+}
+
+.page-tabs {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.header-tab {
+    color: white;
+    text-decoration: none;
+}
+
+.shop-link-btn {
+    background-color: rgb(63, 223, 223);
+    border-radius: 10px;
+    padding: 5px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.cover-photo {
+    max-width: 700px;
+}
+
+.home-body {
+    gap: 50px;
+    display: flex;
+    flex-direction: column;
+}

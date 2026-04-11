@@ -1,0 +1,18 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.page-tabs {
+    display: flex;
+    gap: 20px;
+}
+
+.shop-title {
+    font-weight: bold;
+    text-align: start;
+    padding: 20px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+}

@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router";
 import { useState } from "react";
+import cartPicture from "../assets/react.svg"
 import './Cart.css';
 
 function Cart() {
@@ -18,9 +19,46 @@ function Cart() {
             </div>
             <h2 className="cart-title">Shopping Cart</h2>
             <div className="cart-body">
-                <ol>
-                    <li>cart item</li>
-                    <li>cart item</li>
+                <ol className="cart-items">
+                    <li className="cart-item-style">
+                        <img src={cartPicture} className="cart-picture"></img>
+                        <div className="cart-item-info">
+                            <h4>Parachute Adams Fly</h4>
+                            <h4 className="item-price">$2.99</h4>
+                            <div className="input-style">
+                                <input type="number" name="input" value={3}></input>
+                                <button>-</button>
+                                <button>+</button>
+                            </div>
+                            <button className="remove-btn">Remove</button>
+                        </div>
+                    </li>
+                    <li className="cart-item-style">
+                        <img src={cartPicture} className="cart-picture"></img>
+                        <div className="cart-item-info">
+                            <h4>Parachute Adams Fly</h4>
+                            <h4 className="item-price">$2.99</h4>
+                            <div className="input-style">
+                                <input type="number" name="input" value={3}></input>
+                                <button>-</button>
+                                <button>+</button>
+                            </div>
+                            <button className="remove-btn">Remove</button>
+                        </div>
+                    </li>
+                    <li className="cart-item-style">
+                        <img src={cartPicture} className="cart-picture"></img>
+                        <div className="cart-item-info">
+                            <h4>Parachute Adams Fly</h4>
+                            <h4 className="item-price">$2.99</h4>
+                            <div className="input-style">
+                                <input type="number" name="input" value={3}></input>
+                                <button>-</button>
+                                <button>+</button>
+                            </div>
+                            <button className="remove-btn">Remove</button>
+                        </div>
+                    </li>
                 </ol>
                 <div className="order-summary-body">
                     <h2 className="order-summary-title">Order Summary</h2>
