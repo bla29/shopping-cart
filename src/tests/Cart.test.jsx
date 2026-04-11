@@ -13,7 +13,7 @@ describe('Cart', () => {
             </MemoryRouter>
         );
 
-        const header = screen.getByText('Check Out');
+        const header = screen.getByText('Shopping Cart');
 
         // check if App components show correct headline
         expect(header).toBeInTheDocument();

@@ -46,6 +46,6 @@ describe('Home', () => {
 
         fireEvent.click(screen.getByText('Cart'));
 
-        expect(screen.getByText('Check Out')).toBeInTheDocument();
+        expect(screen.getByText('Shopping Cart')).toBeInTheDocument();
     });
 });

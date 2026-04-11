@@ -46,7 +46,7 @@ describe('Shop', () => {
 
         fireEvent.click(screen.getByText('Cart'));
 
-        expect(screen.getByText('Check Out')).toBeInTheDocument();
+        expect(screen.getByText('Shopping Cart')).toBeInTheDocument();
     });
 
     it('confirms product card design', () => {

@@ -2,8 +2,7 @@ import productImage from "../assets/react.svg";
 import { useState, useEffect } from 'react';
 import './Products.css'
 
-function Products() {
-    const [cartProducts, setCartProducts] = useState([]);
+function Products({ cartProducts, setCartProducts }) {
     const [catalogProducts, setCatalogProducts] = useState([]);
 
     useEffect(() => {
@@ -14,6 +13,10 @@ function Products() {
                 promises.push(
                     fetch(`https://fakestoreapi.com/products/${i}`)
                         .then(res => res.json())
+                        .then(data => {
+                            data.id = data.id - 1;
+                            return data;
+                        })
                 );
             }
 
@@ -24,14 +27,42 @@ function Products() {
         fetchProducts();
     }, []);
 
-    //add selected product to cartProducts array as an object
-    function addProduct() {
+    useEffect(() => {
+        console.log(cartProducts);
+    }, [cartProducts]);
 
+    function findProductCatalog(key) {
+        return catalogProducts.findIndex(product => product.id === key);
     }
 
-    //delete selected product object from cartProducts array
-    function deleteProduct() {
+    function productCartCount(key) {
+        let counter = 0;
+        for (let i = 0; i < cartProducts.length; i++) {
+            if (cartProducts[i].id == key) {
+                counter++;
+            }
+        }
+        return counter;
+    }
 
+    function findProductCart(key) {
+        return cartProducts.findIndex(product => product.id === key);
+    }
+
+    function addProduct(key) {
+        if (findProductCatalog(key) != -1) {
+            let newProduct = catalogProducts[findProductCatalog(key)];
+            setCartProducts(prev => [...prev, newProduct]);
+        }
+    }
+
+    function deleteProduct(key) {
+        if (findProductCart(key) != -1) {
+            let newCartArr = [...cartProducts];
+            let deleteIndex = findProductCart(key);
+            newCartArr.splice(deleteIndex, 1);
+            setCartProducts(newCartArr);
+        }
     }
 
     function productsList() {
@@ -42,9 +73,9 @@ function Products() {
                     <h3>{product.title}</h3>
                     <h3>${product.price}</h3>
                     <div>
-                        <input type="number" name="input1" value={1}></input>
-                        <button>-</button>
-                        <button>+</button>
+                        <input type="number" name="input1" value={productCartCount(product.id)}></input>
+                        <button onClick={() => deleteProduct(product.id)}>-</button>
+                        <button onClick={() => addProduct(product.id)}>+</button>
                     </div>
                     <button>Add to Cart</button>
                 </div>
@@ -53,9 +84,9 @@ function Products() {
     }
 
     return (
-        <>
+        <div className="page-outline">
             {productsList()}
-        </>
+        </div>
     )
 }
 
