@@ -4,6 +4,7 @@ import './Products.css'
 
 function Products({ cartProducts, setCartProducts }) {
     const [catalogProducts, setCatalogProducts] = useState([]);
+    const [inputProducts, setInputProducts] = useState([]);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -70,8 +71,8 @@ function Products({ cartProducts, setCartProducts }) {
             return (
                 <div className="item-outline" key={product.id}>
                     <img className="item-photo" src={product.image}></img>
-                    <h3>{product.title}</h3>
-                    <h3>${product.price}</h3>
+                    <h3 className="item-text">{product.title}</h3>
+                    <h3 className="item-text">${product.price}</h3>
                     <div>
                         <input type="number" name="input1" value={productCartCount(product.id)}></input>
                         <button onClick={() => deleteProduct(product.id)}>-</button>

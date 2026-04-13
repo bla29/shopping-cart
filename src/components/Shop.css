@@ -9,6 +9,11 @@
     gap: 20px;
 }
 
+.header-tab {
+    color: white;
+    text-decoration: none;
+}
+
 .shop-title {
     font-weight: bold;
     text-align: start;

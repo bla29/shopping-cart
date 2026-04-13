@@ -10,9 +10,10 @@ function Shop() {
             <div className="header">
                 <h2>Grand Rapids Fly & Tackle Shop</h2>
                 <div className="page-tabs">
-                    <Link to="/">Home</Link>
-                    <Link to="/shop">Shop</Link>
-                    <Link to="/cart" state={cartProducts}>Cart</Link>
+                    <Link to="/" className="header-tab">Home</Link>
+                    <Link to="/shop" className="header-tab">Shop</Link>
+                    <Link to="/cart" className="header-tab" state={cartProducts}>Cart</Link>
+                    <h3>{cartProducts.length}</h3>
                 </div>
             </div>
             <h2 className="shop-title">Products</h2>

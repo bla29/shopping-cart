@@ -9,6 +9,11 @@
     gap: 20px;
 }
 
+.header-tab {
+    color: white;
+    text-decoration: none;
+}
+
 .cart-picture {
     width: 100px;
     height: 100px;
@@ -41,6 +46,8 @@
     display: flex;
     width: 400px;
     align-items: center;
+    padding: 20px;
+    border: solid white;
 }
 
 .cart-item-info {
@@ -48,6 +55,7 @@
     flex-direction: column;
     gap: 10px;
     flex: 1;
+    color: white;
 }
 
 .input-style {
@@ -60,7 +68,7 @@
 }
 
 .order-summary-body {
-    border-style: solid;
+    border: solid white;
     gap: 20px;
     display: flex;
     flex-direction: column;
@@ -71,7 +79,8 @@
 }
 
 .order-summary-title {
-    color: orange;
+    color: white;
+    font-weight: bold;
     text-align: start;
 }
 
@@ -83,27 +92,26 @@
 .total-price-section {
     display: flex;
     justify-content: space-between;
-    border-top-style: solid;
+    border-top: solid white;
 }
 
 .total-price-text {
     font-weight: bold;
-    color: orange;
+    color: white;
     padding-top: 20px;
 }
 
 .checkout-btn {
     color: white;
-    font-weight: bold;
+    font-weight: bolder;
     border-radius: 8px;
-    background-color: orange;
+    background-color: green;
     padding: 10px;
 }
 
 .remove-btn {
-    color: #e22e2e;
+    color: white;
     border-radius: 8px;
-    background: #ff32321a;
+    background: #d52121;
     padding: 10px;
-    border-color: #0000;
 }
