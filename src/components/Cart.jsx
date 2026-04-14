@@ -26,7 +26,18 @@ function Cart() {
         setCartProducts(tempArr);
     }
 
+    function deleteProduct(key) {
+        let tempArr = [...cartProducts];
 
+        let tempArrIndex = tempArr.findIndex(product => product.id == key);
+        tempArr[tempArrIndex].quantity--;
+
+        if (tempArr[tempArrIndex].quantity == 0) {
+            tempArr.splice(tempArrIndex, 1)
+        }
+
+        setCartProducts(tempArr);
+    }
 
     function deleteAllProduct(key) {
         let tempArr = [...cartProducts];
@@ -45,10 +56,10 @@ function Cart() {
                     <img src={product.image} className="cart-picture"></img>
                     <div className="cart-item-info">
                         <h4>{product.title}</h4>
-                        <h4 className="item-price">${product.price}</h4>
+                        <h4 className="item-price">${product.price * product.quantity}</h4>
                         <div className="input-style">
                             <input type="number" name="input" value={product.quantity}></input>
-                            <button>-</button>
+                            <button onClick={() => deleteProduct(product.id)}>-</button>
                             <button onClick={() => addProduct(product.id)}>+</button>
                         </div>
                         <button className="remove-btn" onClick={() => deleteAllProduct(product.id)}>Remove</button>
