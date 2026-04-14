@@ -43,7 +43,12 @@ function Products({ cartProducts, setCartProducts, cartState }) {
         let counter = 0;
         for (let i = 0; i < inputProducts.length; i++) {
             if (inputProducts[i].id == key) {
-                counter++;
+                if (inputProducts[i].quantity) {
+                    counter = 0;
+                    counter += inputProducts[i].quantity;
+                } else {
+                    counter++;
+                }
             }
         }
         return counter;
@@ -54,14 +59,32 @@ function Products({ cartProducts, setCartProducts, cartState }) {
     }
 
     function addProduct(key) {
-        if (findProductCatalog(key) != -1) {
+        if (findInputProduct(key) == -1 || !inputProducts[findInputProduct(key)].quantity) {
             let newProduct = catalogProducts[findProductCatalog(key)];
             setInputProducts(prev => [...prev, newProduct]);
+        } else {
+            let tempArr = [...inputProducts];
+
+            let tempArrIndex = tempArr.findIndex(product => product.id == key);
+            tempArr[tempArrIndex].quantity++;
+
+            setInputProducts(tempArr);
         }
     }
 
     function deleteProduct(key) {
-        if (findInputProduct(key) != -1) {
+        if (inputProducts[findInputProduct(key)].quantity) {
+            let tempArr = [...inputProducts];
+
+            let tempArrIndex = tempArr.findIndex(product => product.id == key);
+            tempArr[tempArrIndex].quantity--;
+
+            if (tempArr[tempArrIndex].quantity == 0) {
+                tempArr.splice(tempArrIndex, 1)
+            }
+
+            setInputProducts(tempArr);
+        } else {
             let newInputArr = [...inputProducts];
             let deleteIndex = findInputProduct(key);
             newInputArr.splice(deleteIndex, 1);
@@ -71,6 +94,7 @@ function Products({ cartProducts, setCartProducts, cartState }) {
 
     function setCart() {
         const grouped = groupProducts(inputProducts);
+        console.log(grouped)
         setCartProducts(grouped);
     }
 
