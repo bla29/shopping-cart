@@ -6,7 +6,7 @@ import './Cart.css';
 function Cart() {
     const location = useLocation();
     const [cartProducts, setCartProducts] = useState(location.state);
-    const header = cartProducts ? cartProducts.length : '';
+    const header = cartProducts.length > 0 ? '(' + cartProducts.length + ')' : '';
 
     return (
         <>
@@ -15,8 +15,7 @@ function Cart() {
                 <div className="page-tabs">
                     <Link to="/" className="header-tab" state={cartProducts}>Home</Link>
                     <Link to="/shop" className="header-tab" state={cartProducts}>Shop</Link>
-                    <Link to="/cart" className="header-tab">Cart</Link>
-                    <h3 className="header-tab">{header}</h3>
+                    <Link to="/cart" className="header-tab">Cart{header}</Link>
                 </div>
             </div>
             <h2 className="cart-title">Shopping Cart</h2>
