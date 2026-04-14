@@ -17,7 +17,7 @@ function Shop() {
     }
 
     return (
-        <>
+        <div className="main-section">
             <div className="header">
                 <h2>Grand Rapids Fly & Tackle Shop</h2>
                 <div className="page-tabs">
@@ -32,7 +32,7 @@ function Shop() {
                 setCartProducts={setCartProducts}
                 cartState={location.state}
             />
-        </>
+        </div>
     )
 }
 
