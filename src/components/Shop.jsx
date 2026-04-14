@@ -1,10 +1,11 @@
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import { useState } from "react";
 import Products from "./Products";
 import "./Shop.css"
 
 function Shop() {
-    const [cartProducts, setCartProducts] = useState([]);
+    const location = useLocation();
+    const [cartProducts, setCartProducts] = useState(location.state);
     return (
         <>
             <div className="header">
@@ -13,13 +14,14 @@ function Shop() {
                     <Link to="/" className="header-tab">Home</Link>
                     <Link to="/shop" className="header-tab">Shop</Link>
                     <Link to="/cart" className="header-tab" state={cartProducts}>Cart</Link>
-                    <h3>{cartProducts.length}</h3>
+                    <h3 className="header-tab">{cartProducts.length}</h3>
                 </div>
             </div>
             <h2 className="shop-title">Products</h2>
             <Products
                 cartProducts={cartProducts}
                 setCartProducts={setCartProducts}
+                cartState={location.state}
             />
         </>
     )

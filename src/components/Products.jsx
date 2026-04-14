@@ -2,7 +2,7 @@ import productImage from "../assets/react.svg";
 import { useState, useEffect } from 'react';
 import './Products.css'
 
-function Products({ cartProducts, setCartProducts }) {
+function Products({ cartProducts, setCartProducts, cartState }) {
     const [catalogProducts, setCatalogProducts] = useState([]);
     const [inputProducts, setInputProducts] = useState([]);
 
@@ -26,6 +26,7 @@ function Products({ cartProducts, setCartProducts }) {
         };
 
         fetchProducts();
+        setInputProducts(cartState);
     }, []);
 
     useEffect(() => {

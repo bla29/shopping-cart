@@ -13,9 +13,9 @@ function Cart() {
                 <h2>Grand Rapids Fly & Tackle Shop</h2>
                 <div className="page-tabs">
                     <Link to="/" className="header-tab">Home</Link>
-                    <Link to="/shop" className="header-tab">Shop</Link>
+                    <Link to="/shop" className="header-tab" state={cartProducts}>Shop</Link>
                     <Link to="/cart" className="header-tab">Cart</Link>
-                    <h3>{cartProducts.length}</h3>
+                    <h3 className="header-tab">{cartProducts.length}</h3>
                 </div>
             </div>
             <h2 className="cart-title">Shopping Cart</h2>
