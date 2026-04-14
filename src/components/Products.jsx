@@ -26,7 +26,9 @@ function Products({ cartProducts, setCartProducts, cartState }) {
         };
 
         fetchProducts();
-        setInputProducts(cartState);
+        if (cartState) {
+            setInputProducts(cartState);
+        }
     }, []);
 
     useEffect(() => {
