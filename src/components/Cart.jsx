@@ -1,12 +1,62 @@
 import { Link, useLocation } from "react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import cartPicture from "../assets/react.svg"
 import './Cart.css';
 
 function Cart() {
     const location = useLocation();
     const [cartProducts, setCartProducts] = useState(location.state);
-    const header = cartProducts.length > 0 ? '(' + cartProducts.length + ')' : '';
+    const header = cartProducts.length > 0 ? '(' + cartNumber() + ')' : '';
+
+    function cartNumber() {
+        let count = 0;
+        for (let product of cartProducts) {
+            count = product.quantity + count;
+        }
+        return count;
+    }
+
+
+    function addProduct(key) {
+        let tempArr = [...cartProducts];
+
+        let tempArrIndex = tempArr.findIndex(product => product.id == key);
+        tempArr[tempArrIndex].quantity++;
+
+        setCartProducts(tempArr);
+    }
+
+
+
+    function deleteAllProduct(key) {
+        let tempArr = [...cartProducts];
+        for (let i = 0; i < tempArr.length; i++) {
+            if (tempArr[i].id == key) {
+                tempArr.splice(i, 1);
+            }
+        }
+        setCartProducts(tempArr);
+    }
+
+    function productsList() {
+        return cartProducts.map((product) => {
+            return (
+                <li className="cart-item-style" key={product.id}>
+                    <img src={product.image} className="cart-picture"></img>
+                    <div className="cart-item-info">
+                        <h4>{product.title}</h4>
+                        <h4 className="item-price">${product.price}</h4>
+                        <div className="input-style">
+                            <input type="number" name="input" value={product.quantity}></input>
+                            <button>-</button>
+                            <button onClick={() => addProduct(product.id)}>+</button>
+                        </div>
+                        <button className="remove-btn" onClick={() => deleteAllProduct(product.id)}>Remove</button>
+                    </div>
+                </li>
+            )
+        })
+    }
 
     return (
         <>
@@ -21,45 +71,7 @@ function Cart() {
             <h2 className="cart-title">Shopping Cart</h2>
             <div className="cart-body">
                 <ol className="cart-items">
-                    <li className="cart-item-style">
-                        <img src={cartPicture} className="cart-picture"></img>
-                        <div className="cart-item-info">
-                            <h4>Parachute Adams Fly</h4>
-                            <h4 className="item-price">$2.99</h4>
-                            <div className="input-style">
-                                <input type="number" name="input" value={3}></input>
-                                <button>-</button>
-                                <button>+</button>
-                            </div>
-                            <button className="remove-btn">Remove</button>
-                        </div>
-                    </li>
-                    <li className="cart-item-style">
-                        <img src={cartPicture} className="cart-picture"></img>
-                        <div className="cart-item-info">
-                            <h4>Parachute Adams Fly</h4>
-                            <h4 className="item-price">$2.99</h4>
-                            <div className="input-style">
-                                <input type="number" name="input" value={3}></input>
-                                <button>-</button>
-                                <button>+</button>
-                            </div>
-                            <button className="remove-btn">Remove</button>
-                        </div>
-                    </li>
-                    <li className="cart-item-style">
-                        <img src={cartPicture} className="cart-picture"></img>
-                        <div className="cart-item-info">
-                            <h4>Parachute Adams Fly</h4>
-                            <h4 className="item-price">$2.99</h4>
-                            <div className="input-style">
-                                <input type="number" name="input" value={3}></input>
-                                <button>-</button>
-                                <button>+</button>
-                            </div>
-                            <button className="remove-btn">Remove</button>
-                        </div>
-                    </li>
+                    {productsList()}
                 </ol>
                 <div className="order-summary-body">
                     <h2 className="order-summary-title">Order Summary</h2>

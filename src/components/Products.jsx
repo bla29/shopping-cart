@@ -70,7 +70,25 @@ function Products({ cartProducts, setCartProducts, cartState }) {
     }
 
     function setCart() {
-        setCartProducts(inputProducts);
+        const grouped = groupProducts(inputProducts);
+        setCartProducts(grouped);
+    }
+
+    function groupProducts(products) {
+        const map = {};
+
+        products.forEach((product) => {
+            if (!map[product.id]) {
+                map[product.id] = {
+                    ...product,
+                    quantity: 1,
+                };
+            } else {
+                map[product.id].quantity += 1;
+            }
+        });
+
+        return Object.values(map);
     }
 
     function productsList() {

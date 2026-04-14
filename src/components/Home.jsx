@@ -6,7 +6,15 @@ import homePhoto from "../assets/homePhoto.jpg"
 function Home() {
     const location = useLocation();
     const [cartProducts, setCartProducts] = useState(location.state);
-    const header = cartProducts.length > 0 ? '(' + cartProducts.length + ')' : '';
+    const header = cartProducts.length > 0 ? '(' + cartNumber() + ')' : '';
+
+    function cartNumber() {
+        let count = 0;
+        for (let product of cartProducts) {
+            count = product.quantity + count;
+        }
+        return count;
+    }
 
     return (
         <div className="home-body">
