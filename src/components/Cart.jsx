@@ -8,6 +8,11 @@ function Cart() {
     const [cartProducts, setCartProducts] = useState(location.state);
     const header = cartProducts.length > 0 ? '(' + cartNumber() + ')' : '';
 
+    let tax = subTotal() * 0.10;
+    tax = Math.round((tax + Number.EPSILON) * 100) / 100
+    let total = subTotal() + tax;
+    total = total.toFixed(2);
+
     function cartNumber() {
         let count = 0;
         for (let product of cartProducts) {
@@ -49,6 +54,17 @@ function Cart() {
         setCartProducts(tempArr);
     }
 
+    function subTotal() {
+        let total = 0;
+        for (let product of cartProducts) {
+            let itemPrice = product.price * product.quantity;
+            total += itemPrice;
+        }
+
+        total = Math.round((total + Number.EPSILON) * 100) / 100
+        return total;
+    }
+
     function productsList() {
         return cartProducts.map((product) => {
             return (
@@ -88,15 +104,15 @@ function Cart() {
                     <h2 className="order-summary-title">Order Summary</h2>
                     <div className="price-format-text">
                         <h2>Subtotal:</h2>
-                        <h2>$100</h2>
+                        <h2>${subTotal()}</h2>
                     </div>
                     <div className="price-format-text">
                         <h2>Tax (10%):</h2>
-                        <h2>$10</h2>
+                        <h2>${tax}</h2>
                     </div>
                     <div className="total-price-section">
                         <h2 className="total-price-text">Total:</h2>
-                        <h2 className="total-price-text">$110</h2>
+                        <h2 className="total-price-text">${total}</h2>
                     </div>
                     <button className="checkout-btn">Checkout</button>
                 </div>
