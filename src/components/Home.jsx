@@ -26,7 +26,7 @@ function Home() {
                     <Link to="/cart" className="header-tab" state={cartProducts}>Cart{header}</Link>
                 </div>
             </div>
-            <div className="main-section">
+            <div>
                 <img src={homePhoto} className="cover-photo"></img>
                 <h2>Pursue your passion.</h2>
                 <Link to="/shop" className="shop-link-btn" state={cartProducts}>Shop supplies</Link>

@@ -32,6 +32,7 @@ h2 {
 
 .cover-photo {
     max-width: 700px;
+    border-radius: 20px;
 }
 
 .home-body {
