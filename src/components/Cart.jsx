@@ -59,12 +59,14 @@ function Cart() {
 
     function subTotal() {
         let total = 0;
-        for (let product of cartProducts) {
-            let itemPrice = product.price * product.quantity;
-            total += itemPrice;
-        }
+        if (cartProducts) {
+            for (let product of cartProducts) {
+                let itemPrice = product.price * product.quantity;
+                total += itemPrice;
+            }
 
-        total = Math.round((total + Number.EPSILON) * 100) / 100
+            total = Math.round((total + Number.EPSILON) * 100) / 100
+        }
         return total;
     }
 
