@@ -6,7 +6,10 @@ import './Cart.css';
 function Cart() {
     const location = useLocation();
     const [cartProducts, setCartProducts] = useState(location.state);
-    const header = cartProducts.length > 0 ? '(' + cartNumber() + ')' : '';
+    const header = '';
+    if (cartProducts) {
+        header = cartProducts.length > 0 ? '(' + cartNumber() + ')' : '';
+    }
 
     let tax = subTotal() * 0.10;
     tax = Math.round((tax + Number.EPSILON) * 100) / 100
