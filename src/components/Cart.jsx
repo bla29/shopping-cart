@@ -69,23 +69,25 @@ function Cart() {
     }
 
     function productsList() {
-        return cartProducts.map((product) => {
-            return (
-                <li className="cart-item-style" key={product.id}>
-                    <img src={product.image} className="cart-picture"></img>
-                    <div className="cart-item-info">
-                        <h4>{product.title}</h4>
-                        <h4 className="item-price">${product.price * product.quantity}</h4>
-                        <div className="input-style">
-                            <input type="number" name="input" value={product.quantity}></input>
-                            <button onClick={() => deleteProduct(product.id)}>-</button>
-                            <button onClick={() => addProduct(product.id)}>+</button>
+        if (cartProducts) {
+            return cartProducts.map((product) => {
+                return (
+                    <li className="cart-item-style" key={product.id}>
+                        <img src={product.image} className="cart-picture"></img>
+                        <div className="cart-item-info">
+                            <h4>{product.title}</h4>
+                            <h4 className="item-price">${product.price * product.quantity}</h4>
+                            <div className="input-style">
+                                <input type="number" name="input" value={product.quantity}></input>
+                                <button onClick={() => deleteProduct(product.id)}>-</button>
+                                <button onClick={() => addProduct(product.id)}>+</button>
+                            </div>
+                            <button className="remove-btn" onClick={() => deleteAllProduct(product.id)}>Remove</button>
                         </div>
-                        <button className="remove-btn" onClick={() => deleteAllProduct(product.id)}>Remove</button>
-                    </div>
-                </li>
-            )
-        })
+                    </li>
+                )
+            })
+        }
     }
 
     return (
