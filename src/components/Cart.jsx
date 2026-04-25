@@ -6,7 +6,7 @@ import './Cart.css';
 function Cart() {
     const location = useLocation();
     const [cartProducts, setCartProducts] = useState(location.state);
-    const header = '';
+    let header;
     if (cartProducts) {
         header = cartProducts.length > 0 ? '(' + cartNumber() + ')' : '';
     }
